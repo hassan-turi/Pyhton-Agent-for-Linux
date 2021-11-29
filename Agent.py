@@ -5,6 +5,7 @@ from pathlib import Path
 
 
 def getIp():
+    subprocess.call(['uname','-r'])
     interface = "eth0"
     ip = subprocess.check_output("ifconfig " + interface + " | grep 'inet'| cut -d':' -f2", shell = True).strip()
     print(ip)
@@ -26,9 +27,9 @@ def execute__Exploit():
                 subprocess.call(["gcc", "code.c"]) # OR gcc for c program
                 tmp = subprocess.call("./a.out")
                 # print("Code.c has output of: ",tmp)
-            elif files.endswith('.sh'):
-                temp = os.chmod('hello.sh', 0o777)
-                temp = subprocess.call('./hello.sh')
+            # elif files.endswith('.sh'):
+            #     temp = os.chmod('hello.sh', 0o777)
+            #     temp = subprocess.call('./hello.sh')
                 
 
                 """
