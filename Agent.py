@@ -1,15 +1,17 @@
+#!/bin/bash
 import subprocess
 import os
-import stat
+import sys
 from pathlib import Path
+import pexpect
 
 
+interface = "eth0"
 def getIp():
-    
-    subprocess.call(['uname','-r'])
+    subprocess.Popen(['uname','-r'])
     interface = "eth0"
     ip = subprocess.check_output("ifconfig " + interface + " | grep 'inet'| cut -d':' -f2", shell = True).strip()
-    
+
 
 
 def execute__Exploit():
@@ -23,31 +25,47 @@ def execute__Exploit():
     # iterating over all files
     try:
         for files in os.listdir(dirname):
-            if files.endswith(ext):
-                # print(files)  # printing file name of desired extension
-                if files.endswith('.c'):
-                    subprocess.call(["gcc", "code.c"]) # OR gcc for c program
-                    tmp = subprocess.call("./a.out")
-                    # print("Code.c has output of: ",tmp)
+            # if files.endswith('.c'):
+            # subprocess.call(["gcc", "code.c"],shell=False, stderr=subprocess.DEVNULL) # OR g++ for c++ program
+            # subprocess.call(["./a.out"],shell=False)
+            child=pexpect.spawn("gcc -o pwn code.c")
+            child.logfile_read = sys.stdout.buffer
+            child.expect_exact(["$",pexpect.EOF, ])
+            child=pexpect.spawn("./pwn")
+            child.logfile_read = sys.stdout.buffer
+            if child.expect(["#",pexpect.EOF,]):
+                print("Exploit successful")
+            else:
+                print("exploit failed")
+            
+                    
+                #'.*#$'
+                # print("here 1")
+                # print(os.popen("ifconfig"))
+                
+                # ip = subprocess.check_output("ifconfig " + interface + " | grep 'inet'| cut -d':' -f2", shell = True).strip()
+                # print(ip)
+                # subprocess.Popen.terminate(tmp)
+                # print("Code.c has output of: ",tmp)
                 # elif files.endswith('.sh'):
                 #     temp = os.chmod('hello.sh', 0o777)
                 #     temp = subprocess.call('./hello.sh')
                     
                     
 
-                    """
-                    Different Tries
-                    # temp = subprocess.call(['chmod', '0444', 'hello.sh'])  
+            """
+            Different Tries
+            # temp = subprocess.call(['chmod', '0444', 'hello.sh'])  
 
-                    # path = Path("/home/kali/Downloads")
-                    # original_st_mode = path.st_mode
-                    # path.chmod(original_st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
-                    
-                    # os.popen('chmod +x hello.sh')
-                    # temp = subprocess.call('./hello.sh')
-                    # print("HEllo.sh file has output of: ",temp) """
-            else:
-                continue
+            # path = Path("/home/kali/Downloads")
+            # original_st_mode = path.st_mode
+            # path.chmod(original_st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+            
+            # os.popen('chmod +x hello.sh')
+            # temp = subprocess.call('./hello.sh')
+            # print("HEllo.sh file has output of: ",temp) """
+            # else:
+            #     print('else')
     except:
         print('exploit was not succesful')
 
@@ -61,6 +79,6 @@ def execute__Exploit():
 #         print("\n")           # If you are root user...     
 #         print("You are now root!") 
 
-getIp()
+# getIp()
 execute__Exploit()
-# check_root()
+# # check_root()
