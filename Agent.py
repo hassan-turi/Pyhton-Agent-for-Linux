@@ -28,8 +28,15 @@ def file_to_Json():
     dict = {kernel_name1:text}
     for key, value in dict.items():
         dict[key] = value.rstrip()
-    json_text = json.dumps((dict))
-    print(json_text)
+    
+    # If you need only JSON invariable uncomment this
+    # json_text = json.dumps(dict)
+    # print(json_text)
+    
+    # If you need JSON file then use this
+    with open('trace.json', 'w') as file:
+        json.dump(dict,file,ensure_ascii=False,indent=4)
+    
 
 kernel_exploit()
 file_to_Json()
