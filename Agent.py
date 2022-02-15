@@ -3,6 +3,8 @@ import subprocess
 import re
 import json
 import platform
+import urllib
+import pymongo
 
 operating_system = platform.system()
 
@@ -113,8 +115,28 @@ if operating_system == "Linux":
             
 else:
     operating_system = platform.system()
-    dict = {'Operating System':operating_system,'Description':'This script is not for Other Operating systems the script is only for Linux'}
+    dict = {'Operating System':operating_system,'Description':'This script is not for Windows'}
     with open('trace.json', 'w') as file:
             json.dump(dict,file,ensure_ascii=False,indent=2)
     
 
+# mongodb+srv://HassanTuri:J7DXPw@u4@zZSU4@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+# client = pymongo.MongoClient("mongodb+srv://HassanTuri:<password>@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+# db = client.test
+
+def Uploaddb():
+    client = pymongo.MongoClient("mongodb+srv://HassanTuri:J" + urllib.parse.quote("7DXPw@u4@zZSU4") + "@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = client['Linux_Trace_db']
+    linux_trace = db['linux_trace']
+    
+    with open('trace.json') as f:
+        data = json.load(f)
+    
+    linux_trace.insert_one(data)
+    print("Data Uploaded Succesfully")
+    
+    client.close()
+    
+Uploaddb()
+    
