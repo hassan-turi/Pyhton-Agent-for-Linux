@@ -91,12 +91,12 @@ if operating_system == "Linux":
         text = text.rstrip()
         if root == text:
             success = True
-            dicti = {"sucess": success}
+            dicti = {'linux kernel': kernel_name1,"sucess": success}
             dict.update(dicti)
             
         else:
             success = False
-            dicti = {'Succes':success}
+            dicti = {'linux kernel': kernel_name1,'Succes':success}
             dict.update(dicti)
         
         # for key, value in dict.items():
@@ -115,7 +115,7 @@ if operating_system == "Linux":
             
 else:
     operating_system = platform.system()
-    dict = {'Operating System':operating_system,'Description':'This script is not for Windows'}
+    dict = {'Operating System':operating_system, 'Description':'This script is not for other Operating Systems'}
     with open('trace.json', 'w') as file:
             json.dump(dict,file,ensure_ascii=False,indent=2)
     
@@ -128,9 +128,17 @@ def Uploaddb():
     
     with open('trace.json') as f:
         data = json.load(f)
+     
     
-    linux_trace.insert_one(data)
-    print("Data Uploaded Succesfully")
+    kernel = linux_trace.find_one({'linux kernel':kernel_name1},{'_id':0,"Pre Attack":0,"Status":0,'Description':0,"sucess":0})
+    
+    # chk_kernel = kernel["linux kernel"]
+    
+    if kernel == None or kernel["linux kernel"] != kernel_name1:
+        linux_trace.insert_one(data)
+        print("Data Uploaded Succesfully")
+    else:
+        print("Data already Uploaded")
     
     client.close()
     
