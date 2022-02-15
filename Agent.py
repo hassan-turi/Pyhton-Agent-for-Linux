@@ -120,10 +120,6 @@ else:
             json.dump(dict,file,ensure_ascii=False,indent=2)
     
 
-# mongodb+srv://HassanTuri:J7DXPw@u4@zZSU4@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-
-# client = pymongo.MongoClient("mongodb+srv://HassanTuri:<password>@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-# db = client.test
 
 def Uploaddb():
     client = pymongo.MongoClient("mongodb+srv://HassanTuri:J" + urllib.parse.quote("7DXPw@u4@zZSU4") + "@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
