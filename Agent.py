@@ -122,7 +122,7 @@ else:
 
 
 def Uploaddb():
-    client = pymongo.MongoClient("mongodb+srv://HassanTuri:J" + urllib.parse.quote("7DXPw@u4@zZSU4") + "@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://<Username>" + urllib.parse.quote("<Password>") + "@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client['Linux_Trace_db']
     linux_trace = db['linux_trace']
     
