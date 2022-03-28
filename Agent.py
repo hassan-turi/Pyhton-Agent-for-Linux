@@ -120,12 +120,12 @@ if operating_system == "Linux":
         text = text.rstrip()
         if root == text:
             success = True
-            dicti = {'User': root,'linuxKernel': kernel_name1,"success": success}
+            dicti = {'User': text,'linuxKernel': kernel_name1,"success": success}
             dict.update(dicti)
             
         else:
             success = False
-            dicti = {'User': root,'linuxKernel': kernel_name1,'Success':success}
+            dicti = {'User': text,'linuxKernel': kernel_name1,'Success':success}
             dict.update(dicti)
         
         # for key, value in dict.items():
