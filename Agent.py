@@ -1,4 +1,3 @@
-from sre_constants import SUCCESS
 import subprocess
 import re
 import json
@@ -121,12 +120,12 @@ if operating_system == "Linux":
         text = text.rstrip()
         if root == text:
             success = True
-            dicti = {'linuxKernel': kernel_name1,"success": success}
+            dicti = {'User': root,'linuxKernel': kernel_name1,"success": success}
             dict.update(dicti)
             
         else:
             success = False
-            dicti = {'linuxKernel': kernel_name1,'Success':success}
+            dicti = {'User': root,'linuxKernel': kernel_name1,'Success':success}
             dict.update(dicti)
         
         # for key, value in dict.items():
